@@ -66,47 +66,24 @@ def Proporcion(df, dato_analizar):
 
 def FatalVictimsperyear(df):
     fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(30, 8))
-    victimas_mes_anio = df.groupby(['Anio','Mes'])['NumVictimas'].sum().reset_index()
-
-
-    df_2016 = victimas_mes_anio[victimas_mes_anio['Anio'] == 2016]
-    sns.lineplot(data = df_2016, x = 'Mes', y= 'NumVictimas', ax=axes[0,0])
-    axes[0,0].set_title('2016')
-    axes[0,0].set_xlabel('Month')
-    axes[0,0].set_ylabel('Fatal victims')
-
-    df_2017 = victimas_mes_anio[victimas_mes_anio['Anio'] == 2017]
-    sns.lineplot(data = df_2017, x = 'Mes', y= 'NumVictimas', ax=axes[0,1])
-    axes[0,1].set_title(' 2017')
-    axes[0,1].set_xlabel('Month')
-    axes[0,0].set_ylabel('Fatal victims')
-
-    df_2018 = victimas_mes_anio[victimas_mes_anio['Anio'] == 2018]
-    sns.lineplot(data = df_2018, x = 'Mes', y= 'NumVictimas', ax=axes[0,2])
-    axes[0,2].set_title('2018')
-    axes[0,2].set_xlabel('Month')
-    axes[0,0].set_ylabel('Fatal victims')
-
-    df_2019 = victimas_mes_anio[victimas_mes_anio['Anio'] == 2019]
-    sns.lineplot(data = df_2019, x = 'Mes', y= 'NumVictimas', ax=axes[1,0])
-    axes[1,0].set_title('2019')
-    axes[1,0].set_xlabel('Month')
-    axes[1,0].set_ylabel('Fatal victims')
-
-    df_2020 = victimas_mes_anio[victimas_mes_anio['Anio'] == 2020]
-    sns.lineplot(data = df_2020, x = 'Mes', y= 'NumVictimas', ax=axes[1,1])
-    axes[1,1].set_title('2020')
-    axes[1,1].set_xlabel('Month')
-    axes[1,1].set_ylabel('Fatal victims')
-
-    df_2021 = victimas_mes_anio[victimas_mes_anio['Anio'] == 2021]
-    sns.lineplot(data = df_2021, x = 'Mes', y= 'NumVictimas', ax=axes[1,2])
-    axes[1,2].set_title('2021')
-    axes[1,2].set_xlabel('Month')
-    axes[1,2].set_ylabel('Fatal victims')
-
+    
+    victimas_mes_anio = df.groupby(['Anio','Mes'])['NumVictimas'].sum().reset_index()    
+    years = df['Anio'].unique()
+    
+    for i, year in enumerate(years):
+        df_year = victimas_mes_anio[victimas_mes_anio['Anio'] == year]  # Convertir 'year' a cadena para coincidir con el tipo de datos
+        sns.lineplot(data=df_year, x='Mes', y='NumVictimas', ax=axes[i//3, i%3])
+        axes[i//3, i%3].set_title(str(year))
+        axes[i//3, i%3].set_xlabel('Month')
+        axes[i//3, i%3].set_ylabel('Fatal victims')
 
     plt.suptitle('Monthly Deaths per Year', fontsize=16)
     plt.tight_layout() 
     plt.show()
 
+def YearlyAccidentDist(df):
+    sns.violinplot( x='Anio', data=df)
+    plt.title('Yearly Accident Distribution')
+    plt.xlim(2014, 2023)
+    plt.xlabel('Age')
+    plt.show()
