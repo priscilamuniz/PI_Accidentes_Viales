@@ -14,7 +14,7 @@ def PorcentajeNulos(df):
     
     return df_nulos
 
-def ContarRegistrosSD(df,palabra):
+def ContarRegistros(df,palabra):
     """ 
     Devuelve la cantidad de veces que está cierta palabra o frase en los registros
     de un dataframe
@@ -22,11 +22,12 @@ def ContarRegistrosSD(df,palabra):
     Argumentos:
     df (Dataframe de pandas): Dataframe sobre el cual se quiere la información
     palabra (:str): Palabra a buscar
-    palabra2 (:str): Palabra a buscar
+ 
     """
     cantidad = (df == palabra).sum()
-    df_SD = pd.DataFrame(cantidad, columns=['Cantidad_SD'])
-    df_SD['Cantidad_NO_SD'] = (df == palabra).sum()
+    df_SD = pd.DataFrame(cantidad, columns=['Cantidad_palabra'])
+    df_SD['%_sin_palabra'] = cantidad / len(df)
+    df_SD['Cantidad_sin_palabra'] = (df == palabra).sum()
     df_SD['Total_Registros'] = len(df)
     
     return df_SD
