@@ -25,9 +25,9 @@ def ContarRegistros(df,palabra):
  
     """
     cantidad = (df == palabra).sum()
-    df_SD = pd.DataFrame(cantidad, columns=['Cantidad_palabra'])
-    df_SD['%_sin_palabra'] = round(cantidad / len(df) *100,2)
-    df_SD['Cantidad_sin_palabra'] = (df == palabra).sum()
+    nombre_columna = f"Cantidad de {palabra}"
+    df_SD = pd.DataFrame(cantidad, columns=[nombre_columna])
+    df_SD[f'%_de_{palabra}'] = round(cantidad / len(df) *100,2)
     df_SD['Total_Registros'] = len(df)
     
     return df_SD
@@ -63,4 +63,50 @@ def Proporcion(df, dato_analizar):
     df_counts = df_counts.sort_values(by='count', ascending=False)
 
     return df_counts
+
+def FatalVictimsperyear(df):
+    fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(30, 8))
+    victimas_mes_anio = df.groupby(['Anio','Mes'])['NumVictimas'].sum().reset_index()
+
+
+    df_2016 = victimas_mes_anio[victimas_mes_anio['Anio'] == 2016]
+    sns.lineplot(data = df_2016, x = 'Mes', y= 'NumVictimas', ax=axes[0,0])
+    axes[0,0].set_title('2016')
+    axes[0,0].set_xlabel('Month')
+    axes[0,0].set_ylabel('Fatal victims')
+
+    df_2017 = victimas_mes_anio[victimas_mes_anio['Anio'] == 2017]
+    sns.lineplot(data = df_2017, x = 'Mes', y= 'NumVictimas', ax=axes[0,1])
+    axes[0,1].set_title(' 2017')
+    axes[0,1].set_xlabel('Month')
+    axes[0,0].set_ylabel('Fatal victims')
+
+    df_2018 = victimas_mes_anio[victimas_mes_anio['Anio'] == 2018]
+    sns.lineplot(data = df_2018, x = 'Mes', y= 'NumVictimas', ax=axes[0,2])
+    axes[0,2].set_title('2018')
+    axes[0,2].set_xlabel('Month')
+    axes[0,0].set_ylabel('Fatal victims')
+
+    df_2019 = victimas_mes_anio[victimas_mes_anio['Anio'] == 2019]
+    sns.lineplot(data = df_2019, x = 'Mes', y= 'NumVictimas', ax=axes[1,0])
+    axes[1,0].set_title('2019')
+    axes[1,0].set_xlabel('Month')
+    axes[1,0].set_ylabel('Fatal victims')
+
+    df_2020 = victimas_mes_anio[victimas_mes_anio['Anio'] == 2020]
+    sns.lineplot(data = df_2020, x = 'Mes', y= 'NumVictimas', ax=axes[1,1])
+    axes[1,1].set_title('2020')
+    axes[1,1].set_xlabel('Month')
+    axes[1,1].set_ylabel('Fatal victims')
+
+    df_2021 = victimas_mes_anio[victimas_mes_anio['Anio'] == 2021]
+    sns.lineplot(data = df_2021, x = 'Mes', y= 'NumVictimas', ax=axes[1,2])
+    axes[1,2].set_title('2021')
+    axes[1,2].set_xlabel('Month')
+    axes[1,2].set_ylabel('Fatal victims')
+
+
+    plt.suptitle('Monthly Deaths per Year', fontsize=16)
+    plt.tight_layout() 
+    plt.show()
 
