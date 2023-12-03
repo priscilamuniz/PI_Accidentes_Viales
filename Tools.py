@@ -5,23 +5,32 @@ import matplotlib.pyplot as plt
 import warnings
 
 def PorcentajeNulos(df):
+    """ 
+    Returns a summary of the number of records per column in a dataframe, and 
+    the percentage of null values for each. It also returns
+    returns the data type of each column.
+
+    Arguments: 
+    df (pandas dataframe): Data frame to analyse
     
+    """
     porcentaje_nulos = round(df.isnull().sum() / len(df) * 100,2)
     df_nulos = pd.DataFrame(porcentaje_nulos, columns=['%_valores_nulos'])
     df_nulos['Cantidad_Nulos'] = round(df.isnull().sum(),2)
     df_nulos['Cantidad_NO_Nulos'] = round(df.count(),2)
     df_nulos['Total_Registros'] = len(df)
+    df_nulos['Tipo_dato'] = df.dtype()
     
     return df_nulos
 
 def ContarRegistros(df,palabra):
     """ 
-    Devuelve la cantidad de veces que está cierta palabra o frase en los registros
-    de un dataframe
+    Returns the number of occurrences of a given word or phrase in the records of a dataframe.
+    of a dataframe
 
-    Argumentos:
-    df (Dataframe de pandas): Dataframe sobre el cual se quiere la información
-    palabra (:str): Palabra a buscar
+    Arguments:
+    df (pandas dataframe): Data frame to analyse
+    palabra (:str): Word to search for
  
     """
     cantidad = (df == palabra).sum()
@@ -34,7 +43,12 @@ def ContarRegistros(df,palabra):
 
 def Pareto(df, dato_analizar):
     """
-    Es una función que devuelve una gráfica de Pareto tomando un dataframe y la columna a analizar
+    It is a function that returns a Pareto plot.
+
+    Arguments:
+    df (pandas dataframe) : Data frame to analyse
+    data_analyse (str) : Column to analyse
+
     """
 
     counts = df[dato_analizar].value_counts()
@@ -71,7 +85,7 @@ def FatalVictimsperyear(df):
     years = df['Anio'].unique()
     
     for i, year in enumerate(years):
-        df_year = victimas_mes_anio[victimas_mes_anio['Anio'] == year]  # Convertir 'year' a cadena para coincidir con el tipo de datos
+        df_year = victimas_mes_anio[victimas_mes_anio['Anio'] == year] 
         sns.lineplot(data=df_year, x='Mes', y='NumVictimas', ax=axes[i//3, i%3])
         axes[i//3, i%3].set_title(str(year))
         axes[i//3, i%3].set_xlabel('Month')
@@ -87,3 +101,16 @@ def YearlyAccidentDist(df):
     plt.xlim(2014, 2023)
     plt.xlabel('Age')
     plt.show()
+
+def AnnualDistribution(df):
+    
+    """ 
+    Returns a vioin plot of Distribution of annual road accident fatalities
+
+    Arguments:
+    df (pandas dataframe): Dataframe to analyse
+    """
+    sns.violinplot(data = df, x = 'Anio')
+    plt.title('Distribution of annual road accident fatalities')
+    plt.xlabel('Year')
+    plt.show()    
