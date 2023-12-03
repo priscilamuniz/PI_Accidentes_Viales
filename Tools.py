@@ -14,12 +14,13 @@ def PorcentajeNulos(df):
     df (pandas dataframe): Data frame to analyse
     
     """
-    porcentaje_nulos = round(df.isnull().sum() / len(df) * 100,2)
-    df_nulos = pd.DataFrame(porcentaje_nulos, columns=['%_valores_nulos'])
-    df_nulos['Cantidad_Nulos'] = round(df.isnull().sum(),2)
-    df_nulos['Cantidad_NO_Nulos'] = round(df.count(),2)
-    df_nulos['Total_Registros'] = len(df)
-    df_nulos['Tipo_dato'] = df.dtypes
+    tipos = df.dtypes
+
+    df_nulos = pd.DataFrame(tipos, columns=['Datatypes'])
+    df_nulos['%_Null'] = round(df.isnull().sum() / len(df) * 100,2)
+    df_nulos['Qty_Null'] = round(df.isnull().sum(),2)
+    df_nulos['Qty_Not_Null'] = round(df.count(),2)
+    df_nulos['Total_Records'] = len(df)
     
     return df_nulos
 
