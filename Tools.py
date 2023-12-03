@@ -26,7 +26,7 @@ def ContarRegistros(df,palabra):
     """
     cantidad = (df == palabra).sum()
     df_SD = pd.DataFrame(cantidad, columns=['Cantidad_palabra'])
-    df_SD['%_sin_palabra'] = cantidad / len(df)
+    df_SD['%_sin_palabra'] = round(cantidad / len(df) *100,2)
     df_SD['Cantidad_sin_palabra'] = (df == palabra).sum()
     df_SD['Total_Registros'] = len(df)
     
