@@ -19,7 +19,7 @@ def PorcentajeNulos(df):
     df_nulos['Cantidad_Nulos'] = round(df.isnull().sum(),2)
     df_nulos['Cantidad_NO_Nulos'] = round(df.count(),2)
     df_nulos['Total_Registros'] = len(df)
-    df_nulos['Tipo_dato'] = df.dtype()
+    df_nulos['Tipo_dato'] = df.dtypes
     
     return df_nulos
 
