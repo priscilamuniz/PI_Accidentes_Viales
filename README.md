@@ -117,7 +117,7 @@ Para este caso, se toma como año actual al año 2019 y como año anterior al a�
 * El año 2018 ha sido el que mayor cantidad de victimas mortales ha registrado representando 18.5% de los fallecimientos totales, seguido por un decenso en el 2019 y 2020.
 * Los siniestros sucedieron con mayor frencuencia el mes de Diciembre, los días sábados y domingos por la mañana (5-7am).
 
-* Las victimas mortales son un 87% masculinos, de entre 20 y 40 años.
+* Las victimas mortales son un 76% masculinos, de entre 20 y 40 años.
 
 * El 42% de las victimas son personas que iban en moto, el 37% eran peatones y un 4% eran conductores de un auto. 
 

@@ -156,45 +156,62 @@ def DistAnual(df):
     plt.show() 
 """
 
+def FallecimientosAnio(df):
+    data_sum = df.groupby('Anio')['NumVictimas'].sum().reset_index()
+
+    # Trazar el gráfico de barras con los valores sumados
+    plt.figure(figsize=(22, 6))
+    ax = sns.barplot(data=data_sum, x='Anio', y='NumVictimas')
+    for p in ax.patches:
+        ax.annotate(f'{p.get_height()}', (p.get_x() + p.get_width() / 2., p.get_height()),
+                    ha='center', va='center', fontsize=11, color='black', xytext=(0, 5),
+                    textcoords='offset points')
+
+    plt.xlabel('Año')
+    plt.ylabel('Victimas')
+    plt.title('Victimas por año')
+    plt.show()
+
 def VictimaDiaAnio(df):
 
-    # First graph:  
+# First graph:  
     fig, axes = plt.subplots(nrows=1, ncols=3, figsize=(24, 6))
     orden_meses = [
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
     ]
     df['Mes'] = pd.Categorical(df['Mes'], categories=orden_meses, ordered=True)
-    
+
 
     month = df.groupby('Mes')['NumVictimas'].sum().reset_index()
-    sns.lineplot(data = month, x = 'Mes', y = 'NumVictimas', ax = axes[0])
+    sns.lineplot(data = month, x = 'Mes', y = 'NumVictimas', ax = axes[0], marker= 'o')
     axes[0].set_title('Victimas por Mes')
     axes[0].set_xlabel('Mes')
     axes[0].set_ylabel('Victimas')
     axes[0].set_xticklabels(axes[0].get_xticklabels(), rotation=45)
+    axes[0].axhline(y=61, color='green', linestyle='--')
 
 
     # Second graph: FatalVictimsByWeeday
 
+    orden_dias = [
+        'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
+    ]
+    df['DiaSemana'] = pd.Categorical(df['DiaSemana'], categories=orden_dias, ordered=True)
+
     weekday = df.groupby('DiaSemana')['NumVictimas'].sum().reset_index()
-    sns.lineplot(data = weekday, x = 'DiaSemana', y = 'NumVictimas', ax = axes[1])
+    sns.lineplot(data = weekday, x = 'DiaSemana', y = 'NumVictimas', ax = axes[1], marker = 'o')
     axes[1].set_title('Victimas por Dia')
     axes[1].set_xlabel('Dia de la semana')
     axes[1].set_ylabel('Victimas')
-    plt.xticks(rotation=45) 
+    axes[1].set_xticklabels(axes[1].get_xticklabels(), rotation=45) 
         
-
-
-
     # Third graph: FrecuentTimesReported
-    groupH = df.groupby('RangoHorario')['NumVictimas'].sum()
-    sorted_H = groupH.index.sort_values()
-
-    sns.countplot(data=df, x='RangoHorario', order= sorted_H, ax = axes[2])
-    axes[2].set_xlabel('Hora del día')
-    axes[2].set_ylabel('Victimas')
-    axes[2].set_title('Frecuencia de horas')
+    sns.countplot(data=df, x='H')
+    plt.xlabel('Hora del día')
+    plt.ylabel('Victimas')
+    plt.title('Frecuencia de horas')
+    plt.xticks(rotation = 45)
 
 
     plt.tight_layout() 
@@ -247,7 +264,7 @@ def EdadySexo(df):
 def VictimaporAnioporComuna(df):
     plt.figure(figsize = (22,6))
     comuna = df['Comuna'].unique()
-
+    # colores = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf', '#00ffff', '#ff00ff']
     for comuna in df['Comuna'].unique():
         group = df[df['Comuna'] == comuna].groupby(['Anio', 'Comuna'])['NumVictimas'].sum()
         df_group = pd.DataFrame(group)
@@ -422,7 +439,7 @@ def Pareto_calle(df, dato_analizar):
 
     sns.barplot(data=df_filtered, x=dato_analizar, y='count', ax=ax, palette='coolwarm_r')
     plt.xticks(rotation=90)
-    plt.title(label='Pareto')
+    plt.title(label=f'Pareto de {dato_analizar}')
     plt.xlabel(dato_analizar)
     plt.ylabel('Qty')
 
@@ -446,12 +463,12 @@ def RangoHorario(valor):
         return 'Noche'
 
 def RelDiaSemyHora(df):
-    plt.figure(figsize=(12, 6))
-    sns.countplot(data=df, x='DiaSemana', hue='RangoHorario')
-    plt.title('Relación entre Hora y Día de la Semana en Accidentes')
-    plt.xlabel('Hora')
-    plt.ylabel('Cantidad de Accidentes')
-    plt.legend(title='Día de la Semana')
+    plt.figure(figsize=(16, 6))
+    sns.barplot(data=df, x='DiaSemana', y='NumVictimas', hue='RangoHorario', estimator=sum)
+    plt.title('Relación entre Hora y Día de la Semana en Fallecimientos')
+    plt.xlabel('Día de la semana')
+    plt.ylabel('Victimas')
+    plt.legend(title='Hora del Día')
     plt.xticks(rotation=45)
     plt.tight_layout()
     plt.show()
