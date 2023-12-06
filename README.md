@@ -11,14 +11,14 @@ En Argentina, los accidentes de tránsito representan una preocupación signific
 Argentina ostenta uno de los índices más altos de mortalidad producida por siniestros de tránsito y se calcula que 20 personas mueren por día, casi 7.000 fallecidos por año, y más de 120.000 heridos anuales de distinto grado, de acuerdo a un relevamiento de Luchemos por la Vida.
 
 
-![Alt text](Imagenes\image.png)
+<img src="Imagenes/image.png">
 
 
 
 En otro informe publicado por Luchemos por la Vida, donde se calculó el porcentaje de disminución de muertos desde 1990 hasta 2018, Argentina no registró ningún descenso, mientras que países como España lograron reducir muertes en accidentes de tránsito por un 80 por ciento, bajando el número de 9.032 muertos en 1990 a 1.806 en 2018.
 
 
-![Alt text](Imagenes\image-1.png)   
+<img src="Imagenes/image-1.png"> 
 *Fuente: "Mortalidad en Argentina: comparación con otros países", Luchemos por la vida. https://www.luchemos.org.ar/es/estadisticas/internacionales/comparacion-de-argentina-con-otros-paises* 
 
 
@@ -80,7 +80,7 @@ Se observó que la Comuna 1 presenta la mayor cantidad de accidentes con resulta
 
 Se identificó que las víctimas, principalmente, se desplazaban en motocicleta en su rol de conductores, seguidas por los peatones. Además, se notó que los responsables de los accidentes mayormente se desplazaban en automóvil.
 
-Las avenidas fueron identificadas como el lugar principal donde ocurren los accidentes, siendo estos los más frecuentes y no involucrando cruces con otras calles.calles.
+Las avenidas fueron identificadas como el lugar principal donde ocurren los accidentes, siendo estos los más frecuentes y no involucrando cruces con otras calles.
 
 
 ## KPIs
@@ -94,7 +94,7 @@ En función a lo mencionado anteriormente en el objetivo del proyecto, se plante
 $Tasa Homicidios en Siniestros Viales = \frac{Hommicidios Último Semestre}{Población Total} * 100,000$ 
 
 
-En este caso, para el año 2021, la Tasa de homicidios en siniestros viales fue de 1.77 lo que significa que, durante los primeros 6 meses del año 2021, hubo aproximadamente 1.77 homicidios en accidentes de tránsito por cada 100,000 habitantes. Ahora, el objetivo planteado es reducir esta tasa para el siguiente semestre de 2021 en un 10%, esto es 1.60. Cuando se calcula el KPI para este período se obtiene que la Tasa de homicidios en siniestros viales fue de 1.35, lo que significa que para el segundo semestre de 2021 se cumple con el objetivo propuesto.
+En este caso, para el primer semestre del año 2019, la Tasa de homicidios en siniestros viales fue de 1.82 lo que significa que, durante los primeros 6 meses del año 2019, hubo aproximadamente 1.82 homicidios en accidentes de tránsito por cada 100,000 habitantes. Ahora, el objetivo planteado es reducir esta tasa para el siguiente semestre de 2019 en un 10%, esto es 1.60. Cuando se calcula el KPI para este período se obtiene que la Tasa de homicidios en siniestros viales fue de 1.53, lo que significa que para el segundo semestre de 2019 se cumple con el objetivo propuesto.
 
 
 * Reducir en un 7% la cantidad de accidentes mortales de motociclistas en el último año en CABA, con respecto al año anterior.  
@@ -102,17 +102,12 @@ En este caso, para el año 2021, la Tasa de homicidios en siniestros viales fue 
 
 $Tasa homicidios viales en moto = \frac{Homicidios en Moto Año Anterior - Homicidios en Moto Año Actual}{Población Total} * 100$
 
-Para este caso, se toma como año actual al año 2021 y como año anterior al año 2020. En primer lugar, se calculó la Cantidad de accidentes mortales de motociclistas para el año 2020, el cual resultó de -44.00, de esta manera el objetivo a cumplir es de -40.92 (es decir, la reducción del 7% de la cantidad de accidentes para 2020). El calcular la Cantidad de accidentes mortales de motociclistas para el año 2021 resultó de 64.29 lo que significa que aumentó un 64% la cantidad de muertes de conductores de motociclistas respecto del 2021.
+Para este caso, se toma como año actual al año 2019 y como año anterior al año 2018. En primer lugar, se calculó la Cantidad de accidentes mortales de motociclistas para el año 2018, el cual resultó de -8.00, de esta manera el objetivo a cumplir es de -7.4 (es decir, la reducción del 7% de la cantidad de accidentes para 2018). El calcular la Cantidad de accidentes mortales de motociclistas para el año 2021 resultó de 11.11 lo que significa que cumplió y excedió el objetivo y disminuyó la cantidad de muertes de conductores de motociclistas respecto del 2018.
 
-## Dashboard interactivo
-
-Para facilitar la visualización de los datos, se elaboró un dashboard interactivo al cual puede revisar en esta carpeta [aqui]().
 
 # Conclusiones
 
-Con todo lo aqui documentado, y tras el análisis
-
-Acciones a realizar:
+* 
 
 
 
